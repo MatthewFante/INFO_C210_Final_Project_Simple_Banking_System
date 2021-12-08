@@ -1,12 +1,8 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -204,16 +200,45 @@ public class BankingSystem extends Application{
 		taOutput.setText(bank.accountSummary());
 	}
 	
+	public void getTotalBalance() {
+		tfTotalBal.setText(String.format("$%.2f", bank.totalBalance()));
+	}
+
+	public void getNumAccts() {
+		tfNumAccts.setText(Integer.toString(bank.numAccounts()));
+	}
+
+	public void getAvgBalance() {
+		tfAvgBal.setText(String.format("$%.2f", bank.avgBalance()));
+	}
+
+	public void getLargestBalance() {
+		tfLargestBal.setText(String.format("$%.2f", bank.largestBalance()));
+	}
+
+	public void getNumZeroBalAccts() {
+		tfNumZeroBalAccts.setText(Integer.toString(bank.numZeroBalAccts()));
+	}
+
+	public void refreshOutputs() {
+		showAccountList();
+		getTotalBalance();
+		getNumAccts();
+		getAvgBalance();
+		getLargestBalance();
+		getNumZeroBalAccts();
+	}
+
 	public void addAccount() {
 		if(tfAddAccount_CustomerLastName.getText() == "" || tfAddAccount_CustomerFirstName.getText() == "") {
 			lblAddAcctStatus.setText("You must enter the customer's full name.");
 		} else {
 			if(addRegAcct.isSelected()) {
-				bank.addAccount(new RegularAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText())));
+				bank.addAccount(new RegularAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText()), 0));
 			} else if(addChkAcct.isSelected()){
-				bank.addAccount(new CheckingAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText())));
+				bank.addAccount(new CheckingAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText()), 0));
 			} else if(addGoldAcct.isSelected()){
-				bank.addAccount(new GoldAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText())));
+				bank.addAccount(new GoldAccount(bank.getNextAcctID(), new Customer(bank.getNextCustID(), tfAddAccount_CustomerLastName.getText() + ", " + tfAddAccount_CustomerFirstName.getText()), 0));
 			}
 			
 			lblAddAcctStatus.setText("Account added.");
@@ -305,35 +330,6 @@ public class BankingSystem extends Application{
 			a.monthEndProcess();
 		}
 		refreshOutputs();
-	}
-	
-	public void getTotalBalance() {
-		tfTotalBal.setText(String.format("$%.2f", bank.totalBalance()));
-	}
-	
-	public void getAvgBalance() {
-		tfAvgBal.setText(String.format("$%.2f", bank.avgBalance()));
-	}
-
-	public void getNumAccts() {
-		tfNumAccts.setText(Integer.toString(bank.numAccounts()));
-	}
-	
-	public void getLargestBalance() {
-		tfLargestBal.setText(String.format("$%.2f", bank.largestBalance()));
-	}
-	
-	public void getNumZeroBalAccts() {
-		tfNumZeroBalAccts.setText(Integer.toString(bank.numZeroBalAccts()));
-	}
-
-	public void refreshOutputs() {
-		showAccountList();
-		getTotalBalance();
-		getNumAccts();
-		getAvgBalance();
-		getLargestBalance();
-		getNumZeroBalAccts();
 	}
 	
 	public static void main(String[] args) {

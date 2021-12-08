@@ -7,13 +7,6 @@ public abstract class Account {
 	protected String accountType;
 	protected double annualInterestRate, transactionFee, maintenanceFee;
 	
-	
-	public Account(int id, Customer customer) {
-		this.id = id;
-		this.customer = customer;
-		this.ledger = new Ledger();
-	}
-	
 	public Account(int id, Customer customer, double startingBalance) {
 		this.id = id;
 		this.customer = customer;
