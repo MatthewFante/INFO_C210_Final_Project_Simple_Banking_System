@@ -1,8 +1,8 @@
 
 INFO C210 Course Project: 
-#Simple Banking System
+<h1>Simple Banking System</h1>
 
-##1. Introduction 
+<h2>1. Introduction</h2>
 You  are  asked  to  implement  a  simple  Bank  Management  System  for  an  unrealistic 
 bank so that all information on customers and transactions are stored and accessed by 
 bank  operators.  The  system  supports  interactive  inquiries  from  bank  staff  through  a 
