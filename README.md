@@ -1,6 +1,4 @@
-
-INFO C210 Course Project: 
-<h1>Simple Banking System</h1>
+<h1>INFO C210 Course Project: Simple Banking System</h1>
 
 <h2>1. Introduction</h2>
 You  are  asked  to  implement  a  simple  Bank  Management  System  for  an  unrealistic 
@@ -12,7 +10,7 @@ You can work with your group or individually to complete this project.
 Your project will be graded based on the correctness and efficiency of your 
 implementation along with the documentation and readability of your code.  
   
-##2. Specifications / System Overview  
+<h2>2. Specifications / System Overview</h2>
 You will write a Java application to simulate a simple (unrealistic) bank system. This bank supports three different kinds of accounts: Checking, Gold, and Regular. Information common to all account types include account number, balance, and customer information (customer ID, customer name, etc) of the customer who owns 
 the account.
 The Checking account is interest free and charges transaction fees. The first two monthly transactions are free. It charges a $3 fee for every extra transaction (deposit, withdrawal). The Gold account gives a fixed interest at 5% while the Regular account gives fixed interest at 6%. Regular accounts are charged $10 monthly as a maintenance fee. 
@@ -38,9 +36,9 @@ account with largest balance, etc.
 * Exit: quits the system. 
 
 
-##3. Design and Implementation  
+<h2>3. Design and Implementation</h2>
 You need to design and implement a working solution for this problem. The design will include documentation for each of the classes that are part of the application and the methods in each class. You need to document your design and implementation in a readme file. After completing your design, you will implement it. The number of classes you decide to use is up to you; however, your design must follow the good object oriented design practices and system restrictions. 
-##4. Submission 
+<h2>4. Submission</h2>
 1. A UML diagram for the complete system. 
 2. A working system that can be run from the command line. 
 3. A Graphical User Interface (GUI) for the bank operator.  
