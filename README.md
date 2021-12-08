@@ -1,4 +1,4 @@
-<h1>INFO C210 Course Project: Simple Banking System</h1>
+<h1>INFO-C210 Final Project: Simple Banking System</h1>
 
 <h2>1. Introduction</h2>
 You  are  asked  to  implement  a  simple  Bank  Management  System  for  an  unrealistic 
