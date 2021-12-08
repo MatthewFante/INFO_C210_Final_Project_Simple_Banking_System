@@ -115,6 +115,16 @@ public class Bank {
 		return largestBalance;
 	}
 	
+	public String accountSummary() {
+		String summary = "\t=============== ACCOUNT INFORMATION ===============\n";
+		for(Account a: getAccounts()) {
+			summary += a.toString();
+			summary += '\n';
+			summary += a.getLedger().toString();
+		}
+		return summary;
+	}
+	
 	
 
 }
