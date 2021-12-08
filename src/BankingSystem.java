@@ -173,7 +173,7 @@ public class BankingSystem extends Application{
 	}
 	
 	public String accountSummary() {
-		String summary = "";
+		String summary = "\t=============== ACCOUNT INFORMATION ===============\n";
 		for(Account a: bank.getAccounts()) {
 			summary += a.toString();
 			summary += '\n';
