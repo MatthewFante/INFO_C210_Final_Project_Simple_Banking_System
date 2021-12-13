@@ -14,7 +14,7 @@ public class Bank {
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Skywalker, Luke"), 275));
 		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Smith, John"), 3.5));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "White, Walter"), 1000));
-		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Morgan, Dexter"), 22));
+		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Morgan, Dexter"), 0));
 		accounts.add(new RegularAccount(getNextAcctID(), new Customer(nextCustID, "Mouse, Mickey"), 99));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Garten, Ina"), 1));
 		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Wayne, Tater"), 94));
