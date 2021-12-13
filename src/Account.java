@@ -14,18 +14,24 @@ public abstract class Account {
 		ledger.addTransaction(new Transaction(startingBalance, "Starting balance" ));
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
+	public abstract boolean canWithdraw(double amount);
+
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
 	
+	public Ledger getLedger() {
+		return ledger;
+	}
+
 	public double getBalance() {
 		double balance = 0;
 		for(Transaction t: ledger.getTransactions()) {
@@ -34,16 +40,14 @@ public abstract class Account {
 		return balance;
 	}
 	
-	@Override
-	public String toString() {
-		
-		return String.format("\n\t%2d\t\t%-30s\t\t\t$%.2f\t\t\t%-10s", getId(), getCustomer().getName(), getBalance(), getAccountType());
-
+	public String getAccountType() {
+		return accountType;
 	}
-	
-	public abstract boolean canWithdraw(double amount);
-	
-	
+
+	public double getAnnualInterestRate() {
+		return annualInterestRate;
+	}
+
 	public void deposit(double amount) {
 		ledger.addTransaction(new Transaction(amount, "Deposit"));
 	}
@@ -58,18 +62,6 @@ public abstract class Account {
 		}
 	}
 
-	public Ledger getLedger() {
-		return ledger;
-	}
-
-	public String getAccountType() {
-		return accountType;
-	}
-
-	public double getAnnualInterestRate() {
-		return annualInterestRate;
-	}
-	
 	public void accrueMonthlyInterest() {
 		double monthlyInterestRate = annualInterestRate/12, monthlyInterest = getBalance() * monthlyInterestRate;
 		if(annualInterestRate == 0 || getBalance() < 0) {
@@ -99,7 +91,6 @@ public abstract class Account {
 			System.out.printf("\nAccount #%d is charged $%.2f per transaction after the first %d transactions. $.2f fee applied.", getId(), transactionFee, freeTransactions, (currentMonthTransactionCount() - freeTransactions) * transactionFee);
 			ledger.addTransaction(new Transaction((currentMonthTransactionCount() - freeTransactions) * transactionFee, "Transaction Fees"));
 		}
-		
 	}
 	
 	public void applyMaintenanceFee() {
@@ -117,8 +108,9 @@ public abstract class Account {
 		applyTransactionFees();
 		ledger.commitTransactions();
 	}
-	
 
-
-
+	@Override
+	public String toString() {
+		return String.format("\n\t%2d\t\t%-30s\t\t\t$%.2f\t\t\t%-10s", getId(), getCustomer().getName(), getBalance(), getAccountType());
+	}
 }

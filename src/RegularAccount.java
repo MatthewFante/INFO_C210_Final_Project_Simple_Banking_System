@@ -1,4 +1,3 @@
-
 public class RegularAccount extends Account {
 	
 	public RegularAccount(int id, Customer customer, double startingBalance) {
@@ -17,6 +16,5 @@ public class RegularAccount extends Account {
 		} else {
 			return false;
 		}
-
 	}
 }

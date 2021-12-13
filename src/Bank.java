@@ -7,7 +7,6 @@ public class Bank {
 	
 	public Bank() {
 		accounts = new ArrayList<>();
-		
 		// create some initial accounts
 		accounts.add(new RegularAccount(getNextAcctID(), new Customer(nextCustID, "Fante, Matthew"), 150));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Skywalker, Luke"), 275));
@@ -19,7 +18,18 @@ public class Bank {
 		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Wayne, Tater"), 94));
 		accounts.add(new RegularAccount(getNextAcctID(), new Customer(nextCustID, "Petunia, Aunt"), 15));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Lovato, Poot"), -15));
-		
+	}
+
+	public int getNextAcctID() {
+		int acctID = nextAcctID;
+		nextAcctID += 1;
+		return acctID;
+	}
+
+	public int getNextCustID() {
+		int custID = nextCustID;
+		nextCustID += 1;
+		return custID;
 	}
 
 	public ArrayList<Account> getAccounts() {
@@ -29,8 +39,7 @@ public class Bank {
 	public void addAccount(Account a) {
 		accounts.add(a);
 	}
-	
-	
+		
 	public void removeAccount(int Id) {
 		Iterator<Account> iter = accounts.iterator();
 		while(iter.hasNext()) {
@@ -50,35 +59,8 @@ public class Bank {
 		System.out.println("Account not found!");
 		return false;
 	}
-	
-	public int getNextAcctID() {
-		int acctID = nextAcctID;
-		nextAcctID += 1;
-		return acctID;
-	}
-	
-	public int getNextCustID() {
-		int custID = nextCustID;
-		nextCustID += 1;
-		return custID;
-	}
-	
-	@Override
-	public String toString() {
-		String listOfAccounts ="";
-		for(Account a:accounts) {
-			listOfAccounts += a.toString();
-		}
-		
-		return listOfAccounts;
-	}
-	
-	public void accrueMonthlyInterest() {
-		for(Account a:accounts) {
-			a.accrueMonthlyInterest();
-		}
-	}
-	
+
+	// BANK STATISTICS
 	public double totalBalance() {
 		double balance = 0;
 		for(Account a: accounts) {
@@ -114,7 +96,7 @@ public class Bank {
 		}
 		return largestBalance;
 	}
-	
+
 	public String accountSummary() {
 		String summary = "\t=============== ACCOUNT INFORMATION ===============\n";
 		for(Account a: getAccounts()) {
@@ -124,7 +106,14 @@ public class Bank {
 		}
 		return summary;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		String listOfAccounts ="";
+		for(Account a:accounts) {
+			listOfAccounts += a.toString();
+		}
+		return listOfAccounts;
+	}
+	
 }

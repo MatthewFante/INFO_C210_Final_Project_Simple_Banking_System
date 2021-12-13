@@ -17,7 +17,5 @@ public class CheckingAccount extends Account {
 		} else {
 			return false;
 		}
-
 	}
-
 }

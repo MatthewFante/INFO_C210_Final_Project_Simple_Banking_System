@@ -8,7 +8,6 @@ public class Ledger {
 		transactions = new ArrayList<>();
 	}
 	
-
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
@@ -17,6 +16,7 @@ public class Ledger {
 		transactions.add(t);
 	}
 	
+	//used as part of end of month process
 	public void commitTransactions() {
 		for(Transaction t:transactions) {
 			if (t.isCurrentMonth() == true) {
@@ -34,6 +34,4 @@ public class Ledger {
 		}
 		return ledgerString;
 	}
-	
-
 }
