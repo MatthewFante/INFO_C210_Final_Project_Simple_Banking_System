@@ -1,12 +1,12 @@
 public abstract class Account {
-
 	private int id;
-	protected int freeTransactions;
 	private Customer customer;
 	private Ledger ledger;
+	protected int freeTransactions;
 	protected String accountType;
 	protected double annualInterestRate, transactionFee, maintenanceFee;
 	
+//	CONSTRUCTOR
 	public Account(int id, Customer customer, double startingBalance) {
 		this.id = id;
 		this.customer = customer;
@@ -14,12 +14,10 @@ public abstract class Account {
 		ledger.addTransaction(new Transaction(startingBalance, "Starting balance" ));
 	}
 	
+//	ABSTRACT METHODS
 	public abstract boolean canWithdraw(double amount);
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
+//  GETTERS
 	public int getId() {
 		return id;
 	}
@@ -28,6 +26,14 @@ public abstract class Account {
 		return customer;
 	}
 	
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public double getAnnualInterestRate() {
+		return annualInterestRate;
+	}
+
 	public Ledger getLedger() {
 		return ledger;
 	}
@@ -40,14 +46,12 @@ public abstract class Account {
 		return balance;
 	}
 	
-	public String getAccountType() {
-		return accountType;
+//	SETTERS
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public double getAnnualInterestRate() {
-		return annualInterestRate;
-	}
-
+	
+// 	ACCOUNT ACTIONS 
 	public void deposit(double amount) {
 		ledger.addTransaction(new Transaction(amount, "Deposit"));
 	}
@@ -62,16 +66,6 @@ public abstract class Account {
 		}
 	}
 
-	public void accrueMonthlyInterest() {
-		double monthlyInterestRate = annualInterestRate/12, monthlyInterest = getBalance() * monthlyInterestRate;
-		if(annualInterestRate == 0 || getBalance() < 0) {
-			System.out.printf("\nAccount #%d either does not earn interest or had a negative balance.", getId());
-		} else {
-			System.out.printf("\nAccount #%d earns %f%% annually. Accrued this month: $%.2f", getId(), annualInterestRate * 100, monthlyInterest);
-			ledger.addTransaction(new Transaction(monthlyInterest, "Monthly Interest"));
-		}
-	}
-	
 	public int currentMonthTransactionCount() {
 		int count = 0;
 		for(Transaction t:ledger.getTransactions()) {
@@ -80,6 +74,16 @@ public abstract class Account {
 			}
 		}
 		return count;
+	}
+
+	public void accrueMonthlyInterest() {
+		double monthlyInterestRate = annualInterestRate/12, monthlyInterest = getBalance() * monthlyInterestRate;
+		if(annualInterestRate == 0 || getBalance() < 0) {
+			System.out.printf("\nAccount #%d either does not earn interest or had a negative balance.", getId());
+		} else {
+			System.out.printf("\nAccount #%d earns %f%% annually. Accrued this month: $%.2f", getId(), annualInterestRate * 100, monthlyInterest);
+			ledger.addTransaction(new Transaction(monthlyInterest, "Monthly Interest"));
+		}
 	}
 	
 	public void applyTransactionFees() {
@@ -108,7 +112,8 @@ public abstract class Account {
 		applyTransactionFees();
 		ledger.commitTransactions();
 	}
-
+	
+//	OVERRIDDEN METHODS
 	@Override
 	public String toString() {
 		return String.format("\n\t%2d\t\t%-30s\t\t\t$%.2f\t\t\t%-10s", getId(), getCustomer().getName(), getBalance(), getAccountType());

@@ -5,9 +5,11 @@ public class Bank {
 	private ArrayList<Account> accounts;
 	private int nextAcctID = 1, nextCustID = 1;
 	
+// 	CONSTRUCTOR
 	public Bank() {
 		accounts = new ArrayList<>();
-		// create some initial accounts
+		
+		// CREATE SOME INITIAL ACCOUNTS
 		accounts.add(new RegularAccount(getNextAcctID(), new Customer(nextCustID, "Fante, Matthew"), 150));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Skywalker, Luke"), 275));
 		accounts.add(new CheckingAccount(getNextAcctID(), new Customer(nextCustID, "Smith, John"), 3.5));
@@ -19,7 +21,8 @@ public class Bank {
 		accounts.add(new RegularAccount(getNextAcctID(), new Customer(nextCustID, "Petunia, Aunt"), 15));
 		accounts.add(new GoldAccount(getNextAcctID(), new Customer(nextCustID, "Lovato, Poot"), -15));
 	}
-
+	
+//	GETTERS
 	public int getNextAcctID() {
 		int acctID = nextAcctID;
 		nextAcctID += 1;
@@ -36,6 +39,7 @@ public class Bank {
 		return accounts;
 	}
 	
+//	BANK ACTIONS
 	public void addAccount(Account a) {
 		accounts.add(a);
 	}
@@ -59,8 +63,18 @@ public class Bank {
 		System.out.println("Account not found!");
 		return false;
 	}
+	
+	public String accountSummary() {
+		String summary = "\t=============== ACCOUNT INFORMATION ===============\n";
+		for(Account a: getAccounts()) {
+			summary += a.toString();
+			summary += '\n';
+			summary += a.getLedger().toString();
+		}
+		return summary;
+	}
 
-	// BANK STATISTICS
+//	BANK STATISTICS
 	public double totalBalance() {
 		double balance = 0;
 		for(Account a: accounts) {
@@ -97,16 +111,7 @@ public class Bank {
 		return largestBalance;
 	}
 
-	public String accountSummary() {
-		String summary = "\t=============== ACCOUNT INFORMATION ===============\n";
-		for(Account a: getAccounts()) {
-			summary += a.toString();
-			summary += '\n';
-			summary += a.getLedger().toString();
-		}
-		return summary;
-	}
-
+// 	OVERRIDDEN METHODS
 	@Override
 	public String toString() {
 		String listOfAccounts ="";
@@ -115,5 +120,4 @@ public class Bank {
 		}
 		return listOfAccounts;
 	}
-	
 }

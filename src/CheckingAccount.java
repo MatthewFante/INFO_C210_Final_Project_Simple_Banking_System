@@ -1,4 +1,3 @@
-
 public class CheckingAccount extends Account {
 	
 	public CheckingAccount(int id, Customer customer, double startingBalance) {

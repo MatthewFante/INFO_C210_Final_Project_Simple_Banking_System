@@ -196,6 +196,7 @@ public class BankingSystem extends Application{
 		refreshOutputs();
 	}
 	
+//	OUTPUT CONTROL METHODS	
 	public void showAccountList() {
 		taOutput.setText(bank.accountSummary());
 	}
@@ -228,7 +229,8 @@ public class BankingSystem extends Application{
 		getLargestBalance();
 		getNumZeroBalAccts();
 	}
-
+	
+//	BUTTON ACTION METHODS
 	public void addAccount() {
 		if(tfAddAccount_CustomerLastName.getText() == "" || tfAddAccount_CustomerFirstName.getText() == "") {
 			lblAddAcctStatus.setText("You must enter the customer's full name.");
@@ -332,6 +334,8 @@ public class BankingSystem extends Application{
 		refreshOutputs();
 	}
 	
+	
+//	MAIN METHOD
 	public static void main(String[] args) {
 		launch(args);
 	}

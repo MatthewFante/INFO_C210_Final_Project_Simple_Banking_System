@@ -4,14 +4,17 @@ public class Ledger {
 
 	private ArrayList<Transaction> transactions;
 	
+//	CONSTRUCTOR
 	public Ledger() {
 		transactions = new ArrayList<>();
 	}
 	
+//	GETTERS
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
 	
+//	LEDGER ACTIONS
 	public void addTransaction(Transaction t) {
 		transactions.add(t);
 	}
@@ -25,6 +28,7 @@ public class Ledger {
 		}
 	}
 	
+//	OVERRIDDEN METHODS
 	@Override
 	public String toString() {
 		String ledgerString = "";
